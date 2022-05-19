@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 /// <summary>
 /// Master class for machine components.
@@ -25,4 +24,5 @@ public abstract class ComponentPart : MonoBehaviour
         return "Part";
     }
     public abstract string GetCategory();
+    public abstract void RotationDetector();
 }

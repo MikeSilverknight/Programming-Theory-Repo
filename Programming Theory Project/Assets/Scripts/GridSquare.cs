@@ -4,14 +4,12 @@ using UnityEngine;
 
 public class GridSquare : MonoBehaviour
 {
-    public bool isOccupied;
+    public bool isOccupied = false;
+    
     
     void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.GetComponent<ComponentPart>())
-        {
-            isOccupied = true;
-        }
+        isOccupied = true;
     }
     void OnTriggerExit(Collider other)
     {

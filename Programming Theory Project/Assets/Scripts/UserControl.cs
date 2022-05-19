@@ -8,11 +8,13 @@ public class UserControl : MonoBehaviour
     private Camera gameCamera;
     
     public ComponentPart partSelected = null;
+    public PartMarker markerIcon;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        markerIcon.gameObject.SetActive(false);
+
     }
     public void HandleSelection()
     {
@@ -22,39 +24,41 @@ public class UserControl : MonoBehaviour
         {
             var part = hit.collider.GetComponentInParent<ComponentPart>();
             var placement = hit.collider.GetComponentInParent<GridSquare>();
-            var target = hit.collider;
             
             //determine if we clicked on a part or a placement spot
             if (part != null)
             {
                 partSelected = part;
                 part.GetPartName();
-
+                part.RotationDetector();
+                markerIcon.TeleportToSelected();
+                markerIcon.gameObject.SetActive(true);
             }
             else if (placement != null && partSelected != null && !placement.isOccupied)
             { 
                 partSelected.transform.position = placement.transform.position;
                 
-                PartPlacement();
-                
-                placement.isOccupied = true;
                 part = null;
                 placement = null;
-                target = null;
+                partSelected = null;
+                markerIcon.gameObject.SetActive(false);            
             } 
+            else
+            {
+                part = null;
+                placement = null;
+                partSelected = null;
+                markerIcon.gameObject.SetActive(false);
+            }
         }
     }
 
-    public void PartPlacement()
-    {
-        partSelected = null; 
-    }
-
     public void HandleRotation()
-    { 
+    {
         if (partSelected != null)
             { 
                 partSelected.transform.Rotate(0,90,0);
+                partSelected.RotationDetector();
             } 
     }
 

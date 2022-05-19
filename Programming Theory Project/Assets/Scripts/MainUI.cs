@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class MainUI : MonoBehaviour
 {
-    public InfoPopup InfoPopup;
-    public UserControl UserControl;
+    [SerializeField] // ENCAPSULATION
+    private InfoPopup InfoPopup;
+    [SerializeField] // ENCAPSULATION
+    private UserControl UserControl;
     
     private void Awake()
     {
@@ -24,9 +26,16 @@ public class MainUI : MonoBehaviour
         {
             InfoPopup.Name.text = selected.GetPartName();
             InfoPopup.Catagory.text = selected.GetCategory();
-            InfoPopup.gameObject.SetActive(true);
+            StartCoroutine(DisplayInfo());
         }
     }
+    
+    IEnumerator DisplayInfo()
+    {    
+        yield return new WaitForSeconds(0.1f);
+        InfoPopup.gameObject.SetActive(true);
+    }
+    
     // Start is called before the first frame update
     void Start()
     {

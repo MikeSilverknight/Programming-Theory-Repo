@@ -12,7 +12,11 @@ public abstract class PipePart : ComponentPart // INHERITANCE
         return "Pipe";
     }
     
-    
+    public bool isAUsed;
+    public bool isBUsed;
+    public bool isCUsed;
+    public bool isDUsed;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -24,4 +28,6 @@ public abstract class PipePart : ComponentPart // INHERITANCE
     {
         
     }
+
+    public abstract override void RotationDetector();
 }

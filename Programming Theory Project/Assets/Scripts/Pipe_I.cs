@@ -7,20 +7,42 @@ using UnityEngine;
 /// </summary>
 public class Pipe_I : PipePart // INHERITANCE
 {
+
+
     public override string GetPartName() // POLYMORPHISM
     {
         return "I-Pipe";
     }
-    
-    // Start is called before the first frame update
+
+    public float directionFaced {get; private set;} // ENCAPSULATION
+
     void Start()
+    {
+        RotationDetector(); // ABSTRACTION
+    }
+
+    void Update()
     {
         
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void RotationDetector()
     {
+        directionFaced = this.transform.rotation.y;
         
+        if (directionFaced == 90 || directionFaced == -90)
+        {
+            isAUsed = false;
+            isBUsed = true;
+            isCUsed = false;
+            isDUsed = true;
+        }
+        else if (directionFaced == 180 || directionFaced == 0)
+        {
+            isAUsed = true;
+            isBUsed = false;
+            isCUsed = true;
+            isDUsed = false;
+        }
     }
 }

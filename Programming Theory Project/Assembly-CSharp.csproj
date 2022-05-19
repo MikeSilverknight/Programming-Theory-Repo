@@ -41,9 +41,10 @@
      <Compile Include="Assets\Scripts\Pipe_L.cs" />
      <Compile Include="Assets\Scripts\Pipe_I.cs" />
      <Compile Include="Assets\Scripts\UserControl.cs" />
-     <Compile Include="Assets\Scripts\ComponentPart.cs" />
      <Compile Include="Assets\Scripts\MainUI.cs" />
+     <Compile Include="Assets\Scripts\ComponentPart.cs" />
      <Compile Include="Assets\Scripts\InfoPopup.cs" />
+     <Compile Include="Assets\Scripts\PartMarker.cs" />
      <None Include="Assets\Shaders\UnlitOutline.shader" />
     <Reference Include="UnityEngine">
         <HintPath>C:\Program Files\Unity\Hub\Editor\2020.3.32f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
