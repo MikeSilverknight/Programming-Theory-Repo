@@ -6,7 +6,6 @@ public class GridSquare : MonoBehaviour
 {
     public bool isOccupied = false;
     
-    
     void OnTriggerEnter(Collider other)
     {
         isOccupied = true;

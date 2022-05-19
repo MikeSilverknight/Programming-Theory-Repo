@@ -7,16 +7,16 @@ public class UserControl : MonoBehaviour
     [SerializeField] // ENCAPSULATION
     private Camera gameCamera;
     
-    public ComponentPart partSelected = null;
+    public ComponentPart partSelected {get; private set;} // ENCAPSULATION
     public PartMarker markerIcon;
 
     // Start is called before the first frame update
     void Start()
     {
         markerIcon.gameObject.SetActive(false);
-
+        partSelected = null;
     }
-    public void HandleSelection()
+    void HandleSelection()
     {
         var ray = gameCamera.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
@@ -24,6 +24,7 @@ public class UserControl : MonoBehaviour
         {
             var part = hit.collider.GetComponentInParent<ComponentPart>();
             var placement = hit.collider.GetComponentInParent<GridSquare>();
+            var spawner = hit.collider.GetComponentInParent<SpawnSquare>();
             
             //determine if we clicked on a part or a placement spot
             if (part != null)
@@ -43,6 +44,10 @@ public class UserControl : MonoBehaviour
                 partSelected = null;
                 markerIcon.gameObject.SetActive(false);            
             } 
+            else if (spawner && partSelected == null && !placement.isOccupied)
+            {
+                spawner.InstantiatePart();
+            }
             else
             {
                 part = null;
@@ -53,13 +58,18 @@ public class UserControl : MonoBehaviour
         }
     }
 
-    public void HandleRotation()
+    void HandleRotation()
     {
         if (partSelected != null)
             { 
                 partSelected.transform.Rotate(0,90,0);
                 partSelected.RotationDetector();
             } 
+    }
+
+    public void DeletePart()
+    {
+        Object.Destroy(partSelected);
     }
 
     // Update is called once per frame
