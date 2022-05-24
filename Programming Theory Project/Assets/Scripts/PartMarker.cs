@@ -6,7 +6,7 @@ public class PartMarker : MonoBehaviour
 {
     private Vector3 scaleChange;
     private float speed = 3.0f;
-    public UserControl controller;
+    [SerializeField] private UserControl controller;
 
 
     // Start is called before the first frame update

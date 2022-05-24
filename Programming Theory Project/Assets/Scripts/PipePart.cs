@@ -17,6 +17,8 @@ public abstract class PipePart : ComponentPart // INHERITANCE
     public bool isCUsed;
     public bool isDUsed;
 
+    
+
     // Start is called before the first frame update
     void Start()
     {

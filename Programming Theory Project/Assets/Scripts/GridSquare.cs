@@ -6,11 +6,11 @@ public class GridSquare : MonoBehaviour
 {
     public bool isOccupied = false;
     
-    void OnTriggerEnter(Collider other)
+    protected virtual void OnTriggerEnter(Collider other)
     {
         isOccupied = true;
     }
-    void OnTriggerExit(Collider other)
+    protected void OnTriggerExit(Collider other)
     {
         isOccupied = false;
     }

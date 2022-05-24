@@ -1,11 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UserControl : MonoBehaviour
 {
-    [SerializeField] // ENCAPSULATION
-    private Camera gameCamera;
+    [SerializeField] private Camera gameCamera; // ENCAPSULATION
     
     public ComponentPart partSelected {get; private set;} // ENCAPSULATION
     public PartMarker markerIcon;
@@ -16,6 +16,7 @@ public class UserControl : MonoBehaviour
         markerIcon.gameObject.SetActive(false);
         partSelected = null;
     }
+    
     void HandleSelection()
     {
         var ray = gameCamera.ScreenPointToRay(Input.mousePosition);
@@ -35,7 +36,7 @@ public class UserControl : MonoBehaviour
                 markerIcon.TeleportToSelected();
                 markerIcon.gameObject.SetActive(true);
             }
-            else if (placement != null && partSelected != null && !placement.isOccupied)
+            else if (placement != null && partSelected != null && !placement.isOccupied && !placement == spawner)
             { 
                 partSelected.transform.position = placement.transform.position;
                 
@@ -63,15 +64,13 @@ public class UserControl : MonoBehaviour
         if (partSelected != null)
             { 
                 partSelected.transform.Rotate(0,90,0);
+                
+                partSelected.Orientate();
+
                 partSelected.RotationDetector();
+                
             } 
     }
-
-    public void DeletePart()
-    {
-        Object.Destroy(partSelected);
-    }
-
     // Update is called once per frame
     void Update()
     {

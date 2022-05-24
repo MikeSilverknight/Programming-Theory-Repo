@@ -12,49 +12,50 @@ public class Pipe_L : PipePart // INHERITANCE
         return "L-Pipe";
     }
     
-    public float directionFaced {get; private set;} // ENCAPSULATION
-    
     void Start()
     {
+        
         RotationDetector(); // ABSTRACTION
     }
 
     void Update()
     {
-        
+
     }
 
     public override void RotationDetector()
     {
-        directionFaced = this.transform.rotation.y;
         
-        if (directionFaced == 90)
+        if (orientation == "pos0")
+        {
+            isAUsed = true;
+            isBUsed = false;
+            isCUsed = false;
+            isDUsed = true;
+        }  
+        
+        else if (orientation == "pos1")
         {
             isAUsed = true;
             isBUsed = true;
             isCUsed = false;
             isDUsed = false;
-        }
-        else if (directionFaced == 180)
+        }  
+
+        else if (orientation == "pos2")
         {
             isAUsed = false;
             isBUsed = true;
             isCUsed = true;
             isDUsed = false;
         }
-        else if (directionFaced == -90)
+
+        else if (orientation == "pos3")
         {
             isAUsed = false;
             isBUsed = false;
             isCUsed = true;
             isDUsed = true;
-        }
-        else if (directionFaced == 0)
-        {
-            isAUsed = true;
-            isBUsed = false;
-            isCUsed = false;
-            isDUsed = true;
-        }    
+        }   
     }
 }
