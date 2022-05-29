@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DeleteSquare : GridSquare
+public class DeleteSquare : GridSquare // INHERITANCE
 {
     [SerializeField] private UserControl userControl; // ENCAPSULATION
     [SerializeField] private SpawnerPopup spawnerPopup; // ENCAPSULATION

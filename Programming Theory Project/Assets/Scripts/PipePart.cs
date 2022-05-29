@@ -31,5 +31,5 @@ public abstract class PipePart : ComponentPart // INHERITANCE
         
     }
 
-    public abstract override void RotationDetector();
+    
 }

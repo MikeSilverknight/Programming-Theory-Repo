@@ -1,12 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class UserControl : MonoBehaviour
 {
     [SerializeField] private Camera gameCamera; // ENCAPSULATION
-    
     public ComponentPart partSelected {get; private set;} // ENCAPSULATION
     public PartMarker markerIcon;
 
@@ -27,8 +25,9 @@ public class UserControl : MonoBehaviour
             var placement = hit.collider.GetComponentInParent<GridSquare>();
             var spawner = hit.collider.GetComponentInParent<SpawnSquare>();
             
-            //determine if we clicked on a part or a placement spot
-            if (part != null)
+            //determine if we clicked on a part or a placement spot or otherwise
+            //if you click on a movable part, select it
+            if (part != null) 
             {
                 partSelected = part;
                 part.GetPartName();
@@ -36,7 +35,8 @@ public class UserControl : MonoBehaviour
                 markerIcon.TeleportToSelected();
                 markerIcon.gameObject.SetActive(true);
             }
-            else if (placement != null && partSelected != null && !placement.isOccupied && !placement == spawner)
+            //if you click on non-spawner square with a part selected, place the part
+            else if (placement != null && partSelected != null && !placement.isOccupied && !placement == spawner) 
             { 
                 partSelected.transform.position = placement.transform.position;
                 
@@ -44,11 +44,13 @@ public class UserControl : MonoBehaviour
                 placement = null;
                 partSelected = null;
                 markerIcon.gameObject.SetActive(false);            
-            } 
+            }
+            //if you click on an empty spawner, spawn new part
             else if (spawner && partSelected == null && !placement.isOccupied)
             {
                 spawner.InstantiatePart();
             }
+            //if you click on nothing, deselect
             else
             {
                 part = null;
@@ -64,11 +66,8 @@ public class UserControl : MonoBehaviour
         if (partSelected != null)
             { 
                 partSelected.transform.Rotate(0,90,0);
-                
                 partSelected.Orientate();
-
-                partSelected.RotationDetector();
-                
+                partSelected.RotationDetector();        
             } 
     }
     // Update is called once per frame
