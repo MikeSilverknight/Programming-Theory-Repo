@@ -174,7 +174,6 @@ GameObject:
   - component: {fileID: 6366298782873516486}
   - component: {fileID: 78743342445243203}
   - component: {fileID: 5554025111768212439}
-  - component: {fileID: 6594190244109233698}
   m_Layer: 0
   m_Name: PipeStraight
   m_TagString: Untagged
@@ -212,6 +211,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   orientation: 
+  currentSquare: {fileID: 0}
+  pipePrevious: {fileID: 0}
+  pipeNext: {fileID: 0}
   isAUsed: 0
   isBUsed: 0
   isCUsed: 0
@@ -245,20 +247,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
---- !u!114 &6594190244109233698
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6366298782873516484}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c968899299851fc4aa4ccc2d8f93651a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  part: {fileID: 0}
-  orientation: 
 --- !u!1 &6366298783437544584
 GameObject:
   m_ObjectHideFlags: 0

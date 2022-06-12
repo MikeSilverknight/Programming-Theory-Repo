@@ -5,7 +5,7 @@ using UnityEngine;
 public class UserControl : MonoBehaviour
 {
     [SerializeField] private Camera gameCamera; // ENCAPSULATION
-    public ComponentPart partSelected {get; private set;} // ENCAPSULATION
+    public PipePart partSelected {get; private set;} // ENCAPSULATION
     public PartMarker markerIcon;
 
     // Start is called before the first frame update
@@ -21,7 +21,7 @@ public class UserControl : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit))
         {
-            var part = hit.collider.GetComponentInParent<ComponentPart>();
+            var part = hit.collider.GetComponentInParent<PipePart>();
             var placement = hit.collider.GetComponentInParent<GridSquare>();
             var spawner = hit.collider.GetComponentInParent<SpawnSquare>();
             
@@ -70,6 +70,7 @@ public class UserControl : MonoBehaviour
                 partSelected.RotationDetector();        
             } 
     }
+
     // Update is called once per frame
     void Update()
     {

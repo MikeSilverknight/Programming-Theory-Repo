@@ -11,6 +11,7 @@ public class GridSquare : MonoBehaviour
     {
         isOccupied = true;
         occupyingPart = other.gameObject;
+        occupyingPart.GetComponent<PipePart>().currentSquare = this.gameObject;
     }
     protected void OnTriggerExit(Collider other)
     {

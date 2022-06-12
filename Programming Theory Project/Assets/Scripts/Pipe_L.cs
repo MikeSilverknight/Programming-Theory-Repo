@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// Sub-subclass for the L-Pipe.
+/// Subclass for the L-Pipe.
 /// </summary>
 public class Pipe_L : PipePart // INHERITANCE
 {   
@@ -13,8 +13,7 @@ public class Pipe_L : PipePart // INHERITANCE
     }
     
     void Start()
-    {
-        
+    {  
         RotationDetector(); // ABSTRACTION
     }
 
@@ -33,15 +32,13 @@ public class Pipe_L : PipePart // INHERITANCE
             isCUsed = false;
             isDUsed = true;
         }  
-        
         else if (orientation == "pos1")
         {
             isAUsed = true;
             isBUsed = true;
             isCUsed = false;
             isDUsed = false;
-        }  
-
+        }
         else if (orientation == "pos2")
         {
             isAUsed = false;
@@ -49,13 +46,36 @@ public class Pipe_L : PipePart // INHERITANCE
             isCUsed = true;
             isDUsed = false;
         }
-
         else if (orientation == "pos3")
         {
             isAUsed = false;
             isBUsed = false;
             isCUsed = true;
             isDUsed = true;
+        }   
+    }
+
+    public override void LookForConnections()
+    {   
+        if (orientation == "pos0")
+        {
+            CheckUp();
+            CheckLeft();
+        }
+        else if (orientation == "pos1")
+        {
+            CheckUp();
+            CheckRight();
+        }  
+        else if (orientation == "pos2")
+        {
+            CheckRight();
+            CheckDown();
+        }
+        else if (orientation == "pos3")
+        {
+            CheckDown();
+            CheckLeft();
         }   
     }
 }

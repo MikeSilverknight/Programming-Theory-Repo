@@ -11,10 +11,10 @@ public class RandomSpawn : MonoBehaviour
     public GameObject partPrefab2;
     public GameObject startPrefab;
     public GameObject endPrefab;
-    [SerializeField] public Vector3 startPos {get; private set;} // ENCAPSULATION
-    [SerializeField] public int startIndex {get; private set;} // ENCAPSULATION
-    [SerializeField] public Vector3 endPos {get; private set;} // ENCAPSULATION
-    [SerializeField] public int endIndex {get; private set;} // ENCAPSULATION
+    private Vector3 startPos;
+    public int startIndex {get; private set;} // ENCAPSULATION
+    private Vector3 endPos;
+    public int endIndex {get; private set;} // ENCAPSULATION
     int index;
     
     
@@ -83,8 +83,6 @@ public class RandomSpawn : MonoBehaviour
         Vector3[] endPositions;
         endPositions = new Vector3[]{end1,end2,end3};
         
-        
-
         endIndex = Random.Range(0, endPositions.Length);
         endPos = endPositions[endIndex];
 

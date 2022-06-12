@@ -8,6 +8,8 @@ public class MainUI : MonoBehaviour
     [SerializeField] private InfoPopup infoPopup; // ENCAPSULATION
     [SerializeField] private SpawnerPopup spawnerPopup; // ENCAPSULATION
     [SerializeField] private UserControl userControl; // ENCAPSULATION
+
+    PipeStart start;
     
     private void Awake()
     {
@@ -50,5 +52,11 @@ public class MainUI : MonoBehaviour
         {
             SetInfo(); // ABSTRACTION
         }
+    }
+
+    public void StartConnection()
+    {
+        start = GameObject.Find("PipeStart(Clone)").GetComponent<PipeStart>();
+        start.FindStartConnection();
     }
 }
