@@ -48,12 +48,13 @@ public class PipeEnd : MonoBehaviour
             previousPipe = previousSquare.occupyingPart;
         }
         
-        if (prev.isBUsed == true)
+        if (prev.isBUsed == true && prev.isConnected == true)
         {
             isConnected = true;
-            Debug.Log(previousPipe.name + " is Connected!");
-            prev.nextPipe = this.gameObject;
-            prev.LookForConnections();
+            Debug.Log("Start and End are Connected!");
+            //prev.nextPipe = this.gameObject;
+            //prev.LookForConnections();
+
         } else
         {
             isConnected = false;

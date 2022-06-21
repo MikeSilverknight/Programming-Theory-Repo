@@ -334,6 +334,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1666098073608513096}
   - component: {fileID: 5026198338645117867}
+  - component: {fileID: 157744549371334720}
   m_Layer: 0
   m_Name: PipeEnd
   m_TagString: Untagged
@@ -374,6 +375,22 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &157744549371334720
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1666098073608513099}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7805c7bc2eaa2d349ab94f6f96f14364, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isConnected: 0
+  previousPipe: {fileID: 0}
+  previousSquare: {fileID: 0}
+  pipeSpawner: {fileID: 0}
 --- !u!1 &1666098073660769031
 GameObject:
   m_ObjectHideFlags: 0
