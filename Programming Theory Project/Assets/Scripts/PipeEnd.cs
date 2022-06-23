@@ -41,24 +41,24 @@ public class PipeEnd : MonoBehaviour
 
     public void FindConnection()    
     {
-        var prev = previousPipe.GetComponent<PipePart>();
+        
         
         if (previousSquare.occupyingPart != null)
         {
             previousPipe = previousSquare.occupyingPart;
+            var prev = previousPipe.GetComponent<PipePart>();
+        
+            if (prev.isBUsed == true && prev.isConnected == true)
+            {
+                isConnected = true;
+                Debug.Log("Start and End are Connected!");
+            } 
+            else
+            {
+                isConnected = false;
+                Debug.Log("No connection");
+            }
         }
         
-        if (prev.isBUsed == true && prev.isConnected == true)
-        {
-            isConnected = true;
-            Debug.Log("Start and End are Connected!");
-            //prev.nextPipe = this.gameObject;
-            //prev.LookForConnections();
-
-        } else
-        {
-            isConnected = false;
-            Debug.Log("No connection");
-        }
     }
 }

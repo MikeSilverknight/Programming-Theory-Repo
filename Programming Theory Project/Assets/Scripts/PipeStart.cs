@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class PipeStart : MonoBehaviour
 {
-    public bool isConnected;
     public GameObject nextPipe = null;
     public GridSquare nextSquare = null;
     public RandomSpawn pipeSpawner;
@@ -12,7 +11,6 @@ public class PipeStart : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        isConnected = false;
         pipeSpawner = GameObject.Find("GridManager").GetComponent<RandomSpawn>();
         FindStartLocation();
     }
@@ -45,23 +43,20 @@ public class PipeStart : MonoBehaviour
         {
             nextPipe = nextSquare.occupyingPart;
             var next = nextPipe.GetComponent<PipePart>();
-            
             if (next.isDUsed == true)
             {
-                isConnected = true;
-                Debug.Log(nextPipe.name + " is Connected!");
-                next.previousPipe = this.gameObject;
+                next.isConnected = true;
+                Debug.Log(nextPipe.name + " at " + nextSquare.name + " is connected to start");
                 next.LookForConnections();
             } else
             {
-                isConnected = false;
+                next.isConnected = false;
                 Debug.Log("No connection");
             }
-        } else if (nextSquare.occupyingPart == null)
+        } 
+        else if (nextSquare.occupyingPart == null)
         {
             Debug.Log("No connection");
-        }
-        
-        
+        }   
     }
 }

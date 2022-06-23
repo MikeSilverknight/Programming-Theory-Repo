@@ -44,7 +44,8 @@ public class RandomSpawn : MonoBehaviour
         {
             index = Random.Range(0, squares.Length);
             selected2 = squares[index];
-        } 
+        }
+        Debug.Log("1/9 chance of this");
     }
 
     // Update is called once per frame

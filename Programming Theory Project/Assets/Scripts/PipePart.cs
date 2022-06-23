@@ -9,13 +9,22 @@ public abstract class PipePart : MonoBehaviour
 {
     public string orientation {get; private set;}
     public GameObject currentSquare;
-    public GameObject previousPipe;
-    public GameObject nextPipe;
     RandomSpawn spawner;
     public bool isConnected;
+
+    GridSquare a1;
+    GridSquare a2;
+    GridSquare a3;
+    GridSquare b1;
+    GridSquare b2;
+    GridSquare b3;
+    GridSquare c1;
+    GridSquare c2;
+    GridSquare c3;
     void Awake()
     {    
         orientation = "pos0";
+        PingObjects();
     }
     
     public bool isAUsed;
@@ -25,6 +34,17 @@ public abstract class PipePart : MonoBehaviour
 
     // Start is called before the first frame update
     void Start()
+    {
+        
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
+
+    void PingObjects()
     {
         spawner = GameObject.Find("GridManager").GetComponent<RandomSpawn>();
         a1 = GameObject.Find("SquareA1").GetComponent<GridSquare>();
@@ -36,12 +56,6 @@ public abstract class PipePart : MonoBehaviour
         c1 = GameObject.Find("SquareC1").GetComponent<GridSquare>();
         c2 = GameObject.Find("SquareC2").GetComponent<GridSquare>();
         c3 = GameObject.Find("SquareC3").GetComponent<GridSquare>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     public void Orientate()
@@ -65,21 +79,12 @@ public abstract class PipePart : MonoBehaviour
     }
 
     public abstract void LookForConnections();
-
-    GridSquare a1;
-    GridSquare a2;
-    GridSquare a3;
-    GridSquare b1;
-    GridSquare b2;
-    GridSquare b3;
-    GridSquare c1;
-    GridSquare c2;
-    GridSquare c3;
     
     GameObject partUp;
     GameObject partRight;
     GameObject partDown;
     GameObject partLeft;
+    
     protected void CheckUp()
     {
         if (currentSquare.name == "SquareA1" || currentSquare.name == "SquareA2" || currentSquare.name == "SquareA3")
@@ -89,48 +94,49 @@ public abstract class PipePart : MonoBehaviour
         }
         if (currentSquare.name == "SquareB1")
         {
-            partUp = a1.occupyingPart;
-            CheckingUp();
+            CheckingUp(a1);
         }
         if (currentSquare.name == "SquareB2")
         {
-            partUp = a2.occupyingPart;
-            CheckingUp();
+            CheckingUp(a2);
         }
         if (currentSquare.name == "SquareB3")
         {
-            partUp = a3.occupyingPart;
-            CheckingUp();
+            CheckingUp(a3);
         }
         if (currentSquare.name == "SquareC1")
         {
-            partUp = b1.occupyingPart;
-            CheckingUp();
+            CheckingUp(b1);
         }
         if (currentSquare.name == "SquareC2")
         {
-            partUp = b2.occupyingPart;
-            CheckingUp();
+            CheckingUp(b2);
         }
         if (currentSquare.name == "SquareC3")
         {
-            partUp = b3.occupyingPart;
-            CheckingUp();
+            CheckingUp(b3);
         }
     }
 
-    void CheckingUp()
+    void CheckingUp(GridSquare squareU)
     {
-        if (partUp = null)
+        if (squareU.isOccupied == true)
         {
-            isConnected = false;
-            Debug.Log(name + " at " + currentSquare.name + " is not connected");
+            partUp = squareU.occupyingPart;
+            if (partUp.GetComponent<PipePart>().isCUsed == true)
+            {
+                Debug.Log(partUp.name + " at " + squareU.name + " is connected");
+                FeedbackFilter(partUp);   
+            }
+            else
+            {
+                Debug.Log(partUp.name + " at " + squareU.name + " is not connected");
+            }
         }
-        else if (partUp.GetComponent<PipePart>().isCUsed == true)
+        else if (squareU.isOccupied == false)
         {
-            isConnected = true;
-            Debug.Log(name + " at " + currentSquare.name + " is connected");
-            partUp.GetComponent<PipePart>().LookForConnections();
+            partUp = null;
+            Debug.Log(name + " at " + currentSquare.name + " has no connection");
         }
     }
 
@@ -138,13 +144,11 @@ public abstract class PipePart : MonoBehaviour
     {
         if (currentSquare.name == "SquareA1")
         {
-            partRight = a2.occupyingPart;
-            CheckingRight();
+            CheckingRight(a2);
         }
         if (currentSquare.name == "SquareA2")
         {
-            partRight = a3.occupyingPart;
-            CheckingRight();
+            CheckingRight(a3);
         }
         if (currentSquare.name == "SquareA3")
         {
@@ -159,13 +163,11 @@ public abstract class PipePart : MonoBehaviour
         }
         if (currentSquare.name == "SquareB1")
         {
-            partRight = b2.occupyingPart;
-            CheckingRight();
+            CheckingRight(b2);
         }
         if (currentSquare.name == "SquareB2")
         {
-            partRight = b3.occupyingPart;
-            CheckingRight();
+            CheckingRight(b3);
         }
         if (currentSquare.name == "SquareB3")
         {
@@ -180,13 +182,11 @@ public abstract class PipePart : MonoBehaviour
         }
         if (currentSquare.name == "SquareC1")
         {
-            partRight = c2.occupyingPart;
-            CheckingRight();   
+            CheckingRight(c2);   
         }
         if (currentSquare.name == "SquareC2")
         {
-            partRight = c3.occupyingPart;
-            CheckingRight();  
+            CheckingRight(c3);  
         }
         if (currentSquare.name == "SquareC3")
         {
@@ -200,52 +200,53 @@ public abstract class PipePart : MonoBehaviour
             } 
         }
     }
-    void CheckingRight()
+    void CheckingRight(GridSquare squareR)
     {
-        if (partRight = null)
+        if (squareR.isOccupied == true)
         {
-            isConnected = false;
-        } 
-        else if (partRight.GetComponent<PipePart>().isDUsed == true)
+            partRight = squareR.occupyingPart;
+            if (partRight.GetComponent<PipePart>().isDUsed == true)
+            {
+                Debug.Log(partRight.name + " at " + squareR.name + " is connected");
+                FeedbackFilter(partRight);
+            }
+            else
+            { 
+                Debug.Log(partRight.name + " at " + squareR.name + " is not connected");
+            }
+        }
+        else if (squareR.isOccupied == false)
         {
-            isConnected = true;
-            Debug.Log(name + " at " + currentSquare.name + " is connected");
-            partRight.GetComponent<PipePart>().LookForConnections();
+            partRight = null;
+            Debug.Log(name + " at " + currentSquare.name + " has no connection");
         } 
-          
     }
 
     protected void CheckDown()
     {
         if (currentSquare.name == "SquareA1")
         {
-            partDown = b1.occupyingPart;
-            CheckingDown();
+            CheckingDown(b1);
         }
         if (currentSquare.name == "SquareA2")
         {
-            partDown = b2.occupyingPart;
-            CheckingDown();
+            CheckingDown(b2);
         }
         if (currentSquare.name == "SquareA3")
         {
-            partDown = b3.occupyingPart;
-            CheckingDown();
+            CheckingDown(b3);
         }
         if (currentSquare.name == "SquareB1")
         {
-            partDown = c1.occupyingPart;
-            CheckingDown();
+            CheckingDown(c1);
         }
         if (currentSquare.name == "SquareB2")
         {
-            partDown = c2.occupyingPart;
-            CheckingDown();
+            CheckingDown(c2);
         }
         if (currentSquare.name == "SquareB3")
         {
-            partDown = c3.occupyingPart;
-            CheckingDown();
+            CheckingDown(c3);
         }
         if (currentSquare.name == "SquareC1" || currentSquare.name == "SquareC2" || currentSquare.name == "SquareC3")
         {
@@ -254,106 +255,113 @@ public abstract class PipePart : MonoBehaviour
         }
     }
 
-    void CheckingDown()
+    void CheckingDown(GridSquare squareD)
     {
-        if (partDown = null)
+        if (squareD.isOccupied == true)
         {
-            isConnected = false;
-        } 
-        else if (partDown.GetComponent<PipePart>().isAUsed == true)
+            partDown = squareD.occupyingPart;
+            if (partDown.GetComponent<PipePart>().isAUsed == true)
+            {
+                Debug.Log(partDown.name + " at " + squareD.name + " is connected");
+                FeedbackFilter(partDown);
+            }
+            else
+            { 
+                Debug.Log(partDown.name + " at " + squareD.name + " is not connected");
+            }
+        }
+        else if (squareD.isOccupied == false)
         {
-            isConnected = true;
-            Debug.Log(name + " at " + currentSquare.name + " is connected");
-            partDown.GetComponent<PipePart>().LookForConnections();
-        } 
-          
+            partDown = null;
+            Debug.Log(name + " at " + currentSquare.name + " has no connection");
+        }
     }
 
     protected void CheckLeft()
     {
         if (currentSquare.name == "SquareA1")
         {
-            if (spawner.startIndex == 0)
-            {
-                Debug.Log(name + " at " + currentSquare.name + " is connected to start");
-            }
-            else
+            if (spawner.startIndex != 0)
             {
                 Debug.Log("No left connection for " + name + " at " + currentSquare.name);
             }
         }
         if (currentSquare.name == "SquareA2")
         {
-            partLeft = a1.occupyingPart;
-            CheckingLeft();
+            CheckingLeft(a1);
         }
         if (currentSquare.name == "SquareA3")
         {
-            partLeft = a2.occupyingPart;
-            CheckingLeft();     
+            CheckingLeft(a2);     
         }
         if (currentSquare.name == "SquareB1")
         {
-            if (spawner.startIndex == 1)
-            {
-                Debug.Log(name + " at " + currentSquare.name + " is connected to start");
-            }
-            else
+            if (spawner.startIndex != 1)
             {
                 Debug.Log("No left connection for " + name + " at " + currentSquare.name);
             }
         }
         if (currentSquare.name == "SquareB2")
         {
-            partLeft = b1.occupyingPart;
-            CheckingLeft();
+            CheckingLeft(b1);
         }
         if (currentSquare.name == "SquareB3")
         {
-            partLeft = b2.occupyingPart;
-            CheckingLeft();
+            CheckingLeft(b2);
         }
         if (currentSquare.name == "SquareC1")
         {
-            if (spawner.startIndex == 2)
-            {
-                Debug.Log(name + " at " + currentSquare.name + " is connected to start");
-            }
-            else
+            if (spawner.startIndex != 2)
             {
                 Debug.Log("No left connection for " + name + " at " + currentSquare.name);
             }
         }
         if (currentSquare.name == "SquareC2")
-        {
-            partLeft = c1.occupyingPart;
-            CheckingLeft();
+        { 
+            CheckingLeft(c1);
         }
         if (currentSquare.name == "SquareC3")
         {
-            partLeft = c2.occupyingPart;
-            CheckingLeft();   
+            CheckingLeft(c2);   
         }
     }
 
-    void CheckingLeft()
+    void CheckingLeft(GridSquare squareL)
     {
-        if (partLeft = null)
+        if (squareL.isOccupied == true)
         {
-            isConnected = false;
+            partLeft = squareL.occupyingPart;
+            if (partLeft.GetComponent<PipePart>().isBUsed == true)
+            {
+                Debug.Log(partLeft.name + " at " + squareL.name + " is connected");
+                FeedbackFilter(partLeft);
+            }
+            else
+            { 
+                Debug.Log(partLeft.name + " at " + squareL.name + " is not connected");
+            }
         }
-        else if (partLeft.GetComponent<PipePart>().isBUsed == true)
+        else if (squareL.isOccupied == false)
         {
-            isConnected = true;
-            Debug.Log(name + " at " + currentSquare.name + " is connected");
-            partLeft.GetComponent<PipePart>().LookForConnections();
-        } 
-        
+            partUp = null;
+            Debug.Log(name + " at " + currentSquare.name + " has no connection");
+        }
     }
     
+    //This should fix a vexing memory allocation loop where pipes would infinitly trigger each other
+    void FeedbackFilter(GameObject other)
+    {
+        if (other.GetComponent<PipePart>().isConnected != true)
+        {
+            other.GetComponent<PipePart>().isConnected = true;        
+            other.GetComponent<PipePart>().LookForConnections();
+        }
+
+    }
+
     void CheckEnd()
     {
-        var endPart = GameObject.Find("PipeEnd").GetComponent<PipeEnd>();
+        var endPart = GameObject.Find("PipeEnd(Clone)").GetComponent<PipeEnd>();
         endPart.FindConnection();
     }
 

@@ -176,7 +176,7 @@ GameObject:
   - component: {fileID: 5554025111768212439}
   m_Layer: 0
   m_Name: PipeStraight
-  m_TagString: Untagged
+  m_TagString: Pipe
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -210,10 +210,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f912dbc8ec401a428794954584fdd17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  orientation: 
   currentSquare: {fileID: 0}
-  pipePrevious: {fileID: 0}
-  pipeNext: {fileID: 0}
+  isConnected: 0
   isAUsed: 0
   isBUsed: 0
   isCUsed: 0
