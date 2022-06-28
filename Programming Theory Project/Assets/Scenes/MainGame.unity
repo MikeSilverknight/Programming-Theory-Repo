@@ -537,6 +537,7 @@ MonoBehaviour:
   partPrefab2: {fileID: 6366298782873516484, guid: ad33b75d469164349880f0b2a4dacdca, type: 3}
   startPrefab: {fileID: 3974355613416628523, guid: e1f45053866511c4589d9c0bd34f50a2, type: 3}
   endPrefab: {fileID: 1666098073608513099, guid: 685ec4cb339ce054187430b2759d6c5c, type: 3}
+  pipes: []
 --- !u!1 &476998961
 GameObject:
   m_ObjectHideFlags: 0

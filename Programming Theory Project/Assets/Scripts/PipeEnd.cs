@@ -6,8 +6,8 @@ public class PipeEnd : MonoBehaviour
 {
     public bool isConnected;
     public GameObject previousPipe;
-    public GridSquare previousSquare;
-    public RandomSpawn pipeSpawner;
+    private GridSquare previousSquare;
+    private RandomSpawn pipeSpawner;
 
     // Start is called before the first frame update
     void Start()
@@ -43,9 +43,8 @@ public class PipeEnd : MonoBehaviour
     {
         
         
-        if (previousSquare.occupyingPart != null)
+        if (previousSquare.occupyingPart != null && previousPipe == previousSquare.occupyingPart)
         {
-            previousPipe = previousSquare.occupyingPart;
             var prev = previousPipe.GetComponent<PipePart>();
         
             if (prev.isBUsed == true && prev.isConnected == true)

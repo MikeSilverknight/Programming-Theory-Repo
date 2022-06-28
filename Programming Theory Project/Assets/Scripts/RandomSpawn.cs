@@ -72,7 +72,7 @@ public class RandomSpawn : MonoBehaviour
         startIndex = Random.Range(0, startPositions.Length);
         startPos = startPositions[startIndex];
 
-        Instantiate(startPrefab, startPos, startPrefab.transform.rotation);
+        start = Instantiate(startPrefab, startPos, startPrefab.transform.rotation);
     }
 
     void EndPart()
@@ -87,6 +87,26 @@ public class RandomSpawn : MonoBehaviour
         endIndex = Random.Range(0, endPositions.Length);
         endPos = endPositions[endIndex];
 
-        Instantiate(endPrefab, endPos, endPrefab.transform.rotation);
+        end = Instantiate(endPrefab, endPos, endPrefab.transform.rotation);
     }
+
+    public List<GameObject> pipes;
+    
+    GameObject start;
+    GameObject end;
+    public IEnumerator ResetConnections()
+    {
+        pipes = new List<GameObject>(GameObject.FindGameObjectsWithTag("Pipe"));
+        yield return new WaitForSeconds(1.0f);
+        foreach (GameObject pipe in pipes)
+        {
+            pipe.GetComponent<PipePart>().isConnected = false;
+            pipe.GetComponent<PipePart>().prevPipe = null;
+            pipe.GetComponent<PipePart>().nextPipe = null;
+        } 
+        pipes.Clear();
+        start.GetComponent<PipeStart>().nextPipe = null;
+        end.GetComponent<PipeEnd>().previousPipe = null;
+        yield return new WaitForSeconds(0.1f);    
+    } 
 }

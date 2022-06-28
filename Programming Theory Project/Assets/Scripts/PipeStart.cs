@@ -46,6 +46,7 @@ public class PipeStart : MonoBehaviour
             if (next.isDUsed == true)
             {
                 next.isConnected = true;
+                next.prevPipe = this.gameObject;
                 Debug.Log(nextPipe.name + " at " + nextSquare.name + " is connected to start");
                 next.LookForConnections();
             } else
@@ -57,6 +58,7 @@ public class PipeStart : MonoBehaviour
         else if (nextSquare.occupyingPart == null)
         {
             Debug.Log("No connection");
-        }   
+        }
+        StartCoroutine(pipeSpawner.ResetConnections());
     }
 }

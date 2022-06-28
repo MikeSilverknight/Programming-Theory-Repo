@@ -11,16 +11,12 @@ public abstract class PipePart : MonoBehaviour
     public GameObject currentSquare;
     RandomSpawn spawner;
     public bool isConnected;
+    public GameObject prevPipe;
+    public GameObject nextPipe;
 
-    GridSquare a1;
-    GridSquare a2;
-    GridSquare a3;
-    GridSquare b1;
-    GridSquare b2;
-    GridSquare b3;
-    GridSquare c1;
-    GridSquare c2;
-    GridSquare c3;
+    GridSquare a1; GridSquare a2; GridSquare a3;
+    GridSquare b1; GridSquare b2; GridSquare b3;
+    GridSquare c1; GridSquare c2; GridSquare c3;
     void Awake()
     {    
         orientation = "pos0";
@@ -125,8 +121,7 @@ public abstract class PipePart : MonoBehaviour
             partUp = squareU.occupyingPart;
             if (partUp.GetComponent<PipePart>().isCUsed == true)
             {
-                Debug.Log(partUp.name + " at " + squareU.name + " is connected");
-                FeedbackFilter(partUp);   
+                FeedbackFilter(partUp, partUp.name + " at " + squareU.name + " is connected");   
             }
             else
             {
@@ -207,8 +202,7 @@ public abstract class PipePart : MonoBehaviour
             partRight = squareR.occupyingPart;
             if (partRight.GetComponent<PipePart>().isDUsed == true)
             {
-                Debug.Log(partRight.name + " at " + squareR.name + " is connected");
-                FeedbackFilter(partRight);
+                FeedbackFilter(partRight, partRight.name + " at " + squareR.name + " is connected");
             }
             else
             { 
@@ -262,8 +256,7 @@ public abstract class PipePart : MonoBehaviour
             partDown = squareD.occupyingPart;
             if (partDown.GetComponent<PipePart>().isAUsed == true)
             {
-                Debug.Log(partDown.name + " at " + squareD.name + " is connected");
-                FeedbackFilter(partDown);
+                FeedbackFilter(partDown, partDown.name + " at " + squareD.name + " is connected");
             }
             else
             { 
@@ -333,8 +326,8 @@ public abstract class PipePart : MonoBehaviour
             partLeft = squareL.occupyingPart;
             if (partLeft.GetComponent<PipePart>().isBUsed == true)
             {
-                Debug.Log(partLeft.name + " at " + squareL.name + " is connected");
-                FeedbackFilter(partLeft);
+                
+                FeedbackFilter(partLeft, partLeft.name + " at " + squareL.name + " is connected");
             }
             else
             { 
@@ -349,19 +342,34 @@ public abstract class PipePart : MonoBehaviour
     }
     
     //This should fix a vexing memory allocation loop where pipes would infinitly trigger each other
-    void FeedbackFilter(GameObject other)
+    void FeedbackFilter(GameObject other, string message)
     {
-        if (other.GetComponent<PipePart>().isConnected != true)
+        if (other != prevPipe)
         {
-            other.GetComponent<PipePart>().isConnected = true;        
-            other.GetComponent<PipePart>().LookForConnections();
-        }
+            if (other.GetComponent<PipePart>().isConnected != true && this.isConnected)
+            {
+                nextPipe = other;
+                other.GetComponent<PipePart>().isConnected = true;
+                other.GetComponent<PipePart>().prevPipe = this.gameObject;
+                Debug.Log(message);  
+                other.GetComponent<PipePart>().LookForConnections();
+            }
+            else
+            {
 
+            }
+        }
+        else
+        {
+            //Do nothing
+        }
     }
 
     void CheckEnd()
     {
         var endPart = GameObject.Find("PipeEnd(Clone)").GetComponent<PipeEnd>();
+        nextPipe = endPart.gameObject;
+        endPart.previousPipe = this.gameObject;
         endPart.FindConnection();
     }
 
