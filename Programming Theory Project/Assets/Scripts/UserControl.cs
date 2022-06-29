@@ -1,17 +1,28 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UserControl : MonoBehaviour
 {
     [SerializeField] private Camera gameCamera; // ENCAPSULATION
     public PipePart partSelected {get; private set;} // ENCAPSULATION
     public PartMarker markerIcon;
+    private bool isPaused;
+    [SerializeField] private Text pausedT; // ENCAPSULATION
+    [SerializeField] private Button restartB; // ENCAPSULATION
+    [SerializeField] private Button titleB; // ENCAPSULATION
+    [SerializeField] private GameObject overlay; // ENCAPSULATION
 
     // Start is called before the first frame update
     void Start()
     {
+        isPaused = false;
         markerIcon.gameObject.SetActive(false);
+        pausedT.gameObject.SetActive(false);
+        restartB.gameObject.SetActive(false);
+        titleB.gameObject.SetActive(false);
+        overlay.gameObject.SetActive(false);
         partSelected = null;
     }
     
@@ -19,7 +30,7 @@ public class UserControl : MonoBehaviour
     {
         var ray = gameCamera.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
-        if (Physics.Raycast(ray, out hit))
+        if (Physics.Raycast(ray, out hit) && !isPaused)
         {
             var part = hit.collider.GetComponentInParent<PipePart>();
             var placement = hit.collider.GetComponentInParent<GridSquare>();
@@ -79,9 +90,29 @@ public class UserControl : MonoBehaviour
             HandleSelection(); // ABSTRACTION
         }
 
-         if (Input.GetMouseButtonDown(1)) //right click to rotate
+        if (Input.GetMouseButtonDown(1)) //right click to rotate
         {
             HandleRotation(); // ABSTRACTION
+        }
+
+        if (Input.GetKeyDown(KeyCode.Escape)) //open/close pause menu
+        {
+            if (!isPaused)
+            {
+                pausedT.gameObject.SetActive(true);
+                restartB.gameObject.SetActive(true);
+                titleB.gameObject.SetActive(true);
+                overlay.gameObject.SetActive(true);
+                isPaused = true;
+            }
+            else if (isPaused)
+            {
+                pausedT.gameObject.SetActive(false);
+                restartB.gameObject.SetActive(false);
+                titleB.gameObject.SetActive(false);
+                overlay.gameObject.SetActive(false);
+                isPaused = false;
+            }
         }
     }
 }
