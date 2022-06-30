@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class MainUI : MonoBehaviour
 {
@@ -59,4 +60,17 @@ public class MainUI : MonoBehaviour
         start = GameObject.Find("PipeStart(Clone)").GetComponent<PipeStart>();
         start.FindStartConnection();
     }
+
+    public void ResetGame()
+    {
+        SceneManager.LoadScene(1);
+    }
+
+    public void ReturnToTitle()
+    {
+        SceneManager.LoadScene(0);
+    }
+
+    
+
 }
