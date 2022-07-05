@@ -14,10 +14,10 @@ public class DeleteSquare : GridSquare // INHERITANCE
     {
         if (userControl.partSelected == null && !isOccupied)
         {
-            DeleteInfo();
+            DeleteInfo(); // ABSTRACTION
         }
     }
-    protected override void OnTriggerEnter(Collider other)
+    protected override void OnTriggerEnter(Collider other) // POLYMORPHISM
     {
         Destroy(other.gameObject, 0.2f);
     }

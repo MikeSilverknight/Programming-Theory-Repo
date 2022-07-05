@@ -20,7 +20,7 @@ public abstract class PipePart : MonoBehaviour
     void Awake()
     {    
         orientation = "pos0";
-        PingObjects();
+        PingObjects(); // ABSTRACTION
     }
     
     public bool isAUsed;
@@ -74,13 +74,14 @@ public abstract class PipePart : MonoBehaviour
         }    
     }
 
-    public abstract void LookForConnections();
+    public abstract void LookForConnections(); // POLYMORPHISM
     
     GameObject partUp;
     GameObject partRight;
     GameObject partDown;
     GameObject partLeft;
     
+    // This feels like an inefficient rat's nest of code but I can't think of anything else to do
     protected void CheckUp()
     {
         if (currentSquare.name == "SquareA1" || currentSquare.name == "SquareA2" || currentSquare.name == "SquareA3")
@@ -121,7 +122,7 @@ public abstract class PipePart : MonoBehaviour
             partUp = squareU.occupyingPart;
             if (partUp.GetComponent<PipePart>().isCUsed == true)
             {
-                FeedbackFilter(partUp, partUp.name + " at " + squareU.name + " is connected");   
+                FeedbackFilter(partUp, partUp.name + " at " + squareU.name + " is connected"); // ABSTRACTION  
             }
             else
             {
@@ -202,7 +203,7 @@ public abstract class PipePart : MonoBehaviour
             partRight = squareR.occupyingPart;
             if (partRight.GetComponent<PipePart>().isDUsed == true)
             {
-                FeedbackFilter(partRight, partRight.name + " at " + squareR.name + " is connected");
+                FeedbackFilter(partRight, partRight.name + " at " + squareR.name + " is connected"); // ABSTRACTION
             }
             else
             { 
@@ -256,7 +257,7 @@ public abstract class PipePart : MonoBehaviour
             partDown = squareD.occupyingPart;
             if (partDown.GetComponent<PipePart>().isAUsed == true)
             {
-                FeedbackFilter(partDown, partDown.name + " at " + squareD.name + " is connected");
+                FeedbackFilter(partDown, partDown.name + " at " + squareD.name + " is connected"); // ABSTRACTION
             }
             else
             { 
@@ -327,7 +328,7 @@ public abstract class PipePart : MonoBehaviour
             if (partLeft.GetComponent<PipePart>().isBUsed == true)
             {
                 
-                FeedbackFilter(partLeft, partLeft.name + " at " + squareL.name + " is connected");
+                FeedbackFilter(partLeft, partLeft.name + " at " + squareL.name + " is connected"); // ABSTRACTION
             }
             else
             { 
@@ -387,5 +388,5 @@ public abstract class PipePart : MonoBehaviour
 /// <summary>
 /// Triggered every time a pipe rotates
 /// </summary>
-    public abstract void RotationDetector();
+    public abstract void RotationDetector(); // POLYMORPHISM
 }

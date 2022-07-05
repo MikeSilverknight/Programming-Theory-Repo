@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PipeEnd : MonoBehaviour
 {
@@ -8,13 +9,15 @@ public class PipeEnd : MonoBehaviour
     public GameObject previousPipe;
     private GridSquare previousSquare;
     private RandomSpawn pipeSpawner;
+    [SerializeField] private UserControl controller; // ENCAPSULATION
 
     // Start is called before the first frame update
     void Start()
     {
         isConnected = false;
         pipeSpawner = GameObject.Find("GridManager").GetComponent<RandomSpawn>();
-        FindLocation();
+        controller = GameObject.Find("Controller").GetComponent<UserControl>();
+        FindLocation(); // ABSTRACTION
     }
 
     // Update is called once per frame
@@ -41,8 +44,6 @@ public class PipeEnd : MonoBehaviour
 
     public void FindConnection()    
     {
-        
-        
         if (previousSquare.occupyingPart != null && previousPipe == previousSquare.occupyingPart)
         {
             var prev = previousPipe.GetComponent<PipePart>();
@@ -51,13 +52,13 @@ public class PipeEnd : MonoBehaviour
             {
                 isConnected = true;
                 Debug.Log("Start and End are Connected!");
+                StartCoroutine(controller.GetComponent<UserControl>().WinGame());
             } 
             else
             {
                 isConnected = false;
                 Debug.Log("No connection");
             }
-        }
-        
+        }   
     }
 }

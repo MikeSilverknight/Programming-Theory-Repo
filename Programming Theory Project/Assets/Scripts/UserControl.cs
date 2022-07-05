@@ -2,17 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class UserControl : MonoBehaviour
 {
     [SerializeField] private Camera gameCamera; // ENCAPSULATION
-    public PipePart partSelected {get; private set;} // ENCAPSULATION
-    public PartMarker markerIcon;
-    private bool isPaused;
+    [SerializeField] private PartMarker markerIcon; // ENCAPSULATION
     [SerializeField] private Text pausedT; // ENCAPSULATION
+    [SerializeField] private Text winT; // ENCAPSULATION
     [SerializeField] private Button restartB; // ENCAPSULATION
     [SerializeField] private Button titleB; // ENCAPSULATION
     [SerializeField] private GameObject overlay; // ENCAPSULATION
+    public PipePart partSelected {get; private set;} // ENCAPSULATION
+    bool isPaused;
 
     // Start is called before the first frame update
     void Start()
@@ -20,6 +22,7 @@ public class UserControl : MonoBehaviour
         isPaused = false;
         markerIcon.gameObject.SetActive(false);
         pausedT.gameObject.SetActive(false);
+        winT.gameObject.SetActive(false);
         restartB.gameObject.SetActive(false);
         titleB.gameObject.SetActive(false);
         overlay.gameObject.SetActive(false);
@@ -114,5 +117,15 @@ public class UserControl : MonoBehaviour
                 isPaused = false;
             }
         }
+    }
+
+    public IEnumerator WinGame()
+    {
+        winT.gameObject.SetActive(true);
+        isPaused = true;
+        yield return new WaitForSeconds(1.0f);
+        winT.gameObject.SetActive(false);
+        isPaused = false;
+        SceneManager.LoadScene(1);
     }
 }

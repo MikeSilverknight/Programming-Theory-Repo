@@ -261,8 +261,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d45134eeeee43af458027438bc5a3efa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isOccupied: 0
-  occupyingPart: {fileID: 0}
 --- !u!64 &200676862
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -696,6 +694,85 @@ MonoBehaviour:
   startPrefab: {fileID: 3974355613416628523, guid: e1f45053866511c4589d9c0bd34f50a2, type: 3}
   endPrefab: {fileID: 1666098073608513099, guid: 685ec4cb339ce054187430b2759d6c5c, type: 3}
   pipes: []
+--- !u!1 &430509301
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 430509302}
+  - component: {fileID: 430509304}
+  - component: {fileID: 430509303}
+  m_Layer: 5
+  m_Name: WinText
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &430509302
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 430509301}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1231422064}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 110, y: 0}
+  m_SizeDelta: {x: 500, y: 80}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &430509303
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 430509301}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.15508187, g: 0.8018868, b: 0.3146007, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 50
+    m_FontStyle: 1
+    m_BestFit: 0
+    m_MinSize: 4
+    m_MaxSize: 60
+    m_Alignment: 4
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: CONNECTION MADE
+--- !u!222 &430509304
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 430509301}
+  m_CullTransparentMesh: 1
 --- !u!1 &476998961
 GameObject:
   m_ObjectHideFlags: 0
@@ -730,6 +807,7 @@ MonoBehaviour:
   gameCamera: {fileID: 1143311948}
   markerIcon: {fileID: 1257697697}
   pausedT: {fileID: 1651716157}
+  winT: {fileID: 430509303}
   restartB: {fileID: 806837264}
   titleB: {fileID: 532852537}
   overlay: {fileID: 1982741832}
@@ -1023,8 +1101,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d45134eeeee43af458027438bc5a3efa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isOccupied: 0
-  occupyingPart: {fileID: 0}
 --- !u!1 &686774871
 GameObject:
   m_ObjectHideFlags: 0
@@ -1071,8 +1147,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d45134eeeee43af458027438bc5a3efa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isOccupied: 0
-  occupyingPart: {fileID: 0}
 --- !u!64 &686774874
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -1471,8 +1545,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d45134eeeee43af458027438bc5a3efa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isOccupied: 0
-  occupyingPart: {fileID: 0}
 --- !u!1 &1143311946
 GameObject:
   m_ObjectHideFlags: 0
@@ -1744,8 +1816,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d45134eeeee43af458027438bc5a3efa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isOccupied: 0
-  occupyingPart: {fileID: 0}
 --- !u!1 &1231422060
 GameObject:
   m_ObjectHideFlags: 0
@@ -1846,6 +1916,7 @@ RectTransform:
   - {fileID: 806837263}
   - {fileID: 532852536}
   - {fileID: 325738221}
+  - {fileID: 430509302}
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1960,8 +2031,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d45134eeeee43af458027438bc5a3efa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isOccupied: 0
-  occupyingPart: {fileID: 0}
 --- !u!64 &1311525792
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -2331,8 +2400,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a4f68e61ae5569448735361b0a06575, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isOccupied: 0
-  occupyingPart: {fileID: 0}
   userControl: {fileID: 476998962}
   spawnerPopup: {fileID: 1598004342}
   displayText: Delete Part
@@ -2459,8 +2526,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d45134eeeee43af458027438bc5a3efa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isOccupied: 0
-  occupyingPart: {fileID: 0}
 --- !u!64 &1574929108
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -2678,7 +2743,7 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 4
     m_MaxSize: 60
-    m_Alignment: 0
+    m_Alignment: 1
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
@@ -2897,8 +2962,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d45134eeeee43af458027438bc5a3efa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isOccupied: 0
-  occupyingPart: {fileID: 0}
 --- !u!64 &1748807122
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -3008,12 +3071,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c17dcc78c2849924aaed8644972d7841, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isOccupied: 0
-  occupyingPart: {fileID: 0}
   userControl: {fileID: 476998962}
   spawnerPopup: {fileID: 1598004342}
-  displayText: Spawn L-Pipe
   partPrefab: {fileID: 4148109358429835353, guid: 5dfa3a06374f38042bf2d653202e6fa7, type: 3}
+  displayText: Spawn L-Pipe
 --- !u!64 &1763782882
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -3123,12 +3184,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c17dcc78c2849924aaed8644972d7841, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isOccupied: 0
-  occupyingPart: {fileID: 0}
   userControl: {fileID: 476998962}
   spawnerPopup: {fileID: 1598004342}
-  displayText: Spawn I-Pipe
   partPrefab: {fileID: 6366298782873516484, guid: ad33b75d469164349880f0b2a4dacdca, type: 3}
+  displayText: Spawn I-Pipe
 --- !u!64 &1904684223
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -3406,8 +3465,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d45134eeeee43af458027438bc5a3efa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isOccupied: 0
-  occupyingPart: {fileID: 0}
 --- !u!64 &2071276782
 MeshCollider:
   m_ObjectHideFlags: 0

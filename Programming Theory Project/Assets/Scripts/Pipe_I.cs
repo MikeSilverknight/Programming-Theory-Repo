@@ -22,7 +22,7 @@ public class Pipe_I : PipePart // INHERITANCE
         
     }
 
-    public override void RotationDetector()
+    public override void RotationDetector() // POLYMORPHISM
     { 
         if (orientation == "pos0" || orientation == "pos2")
         {
@@ -40,11 +40,11 @@ public class Pipe_I : PipePart // INHERITANCE
         }
     }
 
-    public override void LookForConnections()
+    public override void LookForConnections() // POLYMORPHISM
     { 
         if (orientation == "pos0" || orientation == "pos2")
         {
-            CheckUp();
+            CheckUp(); 
             CheckDown();
         }
         else if (orientation == "pos1" || orientation == "pos3")

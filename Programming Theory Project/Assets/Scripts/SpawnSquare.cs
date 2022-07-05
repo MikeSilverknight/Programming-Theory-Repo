@@ -6,15 +6,15 @@ public class SpawnSquare : GridSquare // INHERITANCE
 {
     [SerializeField] private UserControl userControl; // ENCAPSULATION
     [SerializeField] private SpawnerPopup spawnerPopup; // ENCAPSULATION
-    public string displayText;
-    public GameObject partPrefab;
+    [SerializeField] private GameObject partPrefab; // ENCAPSULATION
+    [SerializeField] private string displayText; // ENCAPSULATION
    
     //If your mouse hovers over the GameObject with the script attached
     void OnMouseOver()
     {
         if (userControl.partSelected == null && !isOccupied)
         {
-            HelperInfo();
+            HelperInfo(); // ABSTRACTION
         }
     }
 

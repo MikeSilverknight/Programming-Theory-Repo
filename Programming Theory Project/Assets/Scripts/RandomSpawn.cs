@@ -21,8 +21,8 @@ public class RandomSpawn : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     { 
-        StartPart();
-        EndPart();
+        StartPart(); // ABSTRACTION
+        EndPart(); // ABSTRACTION
         
         index = Random.Range(0, squares.Length);
         selected1 = squares[index];
@@ -32,10 +32,10 @@ public class RandomSpawn : MonoBehaviour
         
         if (selected1 == selected2)
         {
-            RerollSquare2();
+            RerollSquare2(); // ABSTRACTION
         }
         
-        InstantiateParts();
+        InstantiateParts(); // ABSTRACTION
     }
 
     void RerollSquare2()

@@ -12,7 +12,7 @@ public class PipeStart : MonoBehaviour
     void Start()
     {
         pipeSpawner = GameObject.Find("GridManager").GetComponent<RandomSpawn>();
-        FindStartLocation();
+        FindStartLocation(); // ABSTRACTION
     }
 
     // Update is called once per frame
@@ -59,6 +59,7 @@ public class PipeStart : MonoBehaviour
         {
             Debug.Log("No connection");
         }
+        
         StartCoroutine(pipeSpawner.ResetConnections());
     }
 }

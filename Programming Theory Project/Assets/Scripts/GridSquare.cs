@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class GridSquare : MonoBehaviour
 {
-    public bool isOccupied = false;
-    public GameObject occupyingPart;
+    public bool isOccupied {get; private set;} // ENCAPSULATION
+    public GameObject occupyingPart {get; private set;} // ENCAPSULATION
     
-    protected virtual void OnTriggerEnter(Collider other)
+    protected virtual void OnTriggerEnter(Collider other) // POLYMORPHISM
     {
         isOccupied = true;
         occupyingPart = other.gameObject;
@@ -22,7 +22,8 @@ public class GridSquare : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        occupyingPart = null;
+        isOccupied = false;
+        occupyingPart = null;  
     }
 
     // Update is called once per frame

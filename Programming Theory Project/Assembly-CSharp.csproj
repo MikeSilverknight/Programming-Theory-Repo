@@ -38,9 +38,9 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\PipeStart.cs" />
      <Compile Include="Assets\Scripts\PipePart.cs" />
-     <Compile Include="Assets\Scripts\PipeConnection.cs" />
      <Compile Include="Assets\Scripts\SpawnSquare.cs" />
      <Compile Include="Assets\Scripts\GridSquare.cs" />
+     <Compile Include="Assets\Scripts\UI\MenuManager.cs" />
      <Compile Include="Assets\Scripts\DeleteSquare.cs" />
      <Compile Include="Assets\Scripts\Pipe_L.cs" />
      <Compile Include="Assets\Scripts\Pipe_I.cs" />
@@ -51,7 +51,6 @@
      <Compile Include="Assets\Scripts\UserControl.cs" />
      <Compile Include="Assets\Scripts\UI\MainUI.cs" />
      <Compile Include="Assets\Scripts\UI\InfoPopup.cs" />
-     <Compile Include="Assets\Scripts\UI\MenuManager.cs" />
      <None Include="Assets\Shaders\UnlitOutline.shader" />
     <Reference Include="UnityEngine">
         <HintPath>C:\Program Files\Unity\Hub\Editor\2020.3.32f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
